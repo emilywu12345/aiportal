@@ -8,13 +8,14 @@ environments:
     password: "mtyTWgJlFOqHfNyIbKZR"
     api_base_url: "http://192.168.101.65/api"  # API基础URL
   timeout: 30  # 环境特定超时设置
+  
   uat:  # UAT测试环境
-    url: "https://aiportal.temvo.com/login"
-    username: "1062174229@qq.com"
-    password: "85516d29504949bc"
-    api_base_url: "https://aiportal.temvo.com/api"
+    url: "http://57.158.72.194/csdc-ai-portal/#/login"
+    username: "wuemily55@gmail.com"
+    password: "xiao123456"
+    api_base_url: "http://57.158.72.194/csdc-ai-portal/api"
     timeout: 30
-
+    
 # 浏览器配置
 browser:
   type: "chrome"  # 支持 chrome, firefox, edge

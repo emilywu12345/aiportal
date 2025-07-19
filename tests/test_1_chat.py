@@ -6,6 +6,7 @@ from page_objects.knowledge_page import KnowledgePage
 from page_objects.chat_page import ChatPage
 from utils.config_manager import ConfigManager
 from data.test_data import get_ai_chat_data
+from utils.log_manager import logger
 
 @allure.feature("聊天")
 # 使用类级别已登录driver夹具，保证本类所有用例共用同一浏览器会话，提升执行效率
@@ -21,6 +22,14 @@ class TestChat:
     @pytest.fixture(autouse=True)
     def _inject_driver(self, session_logged_in_driver):
         self.driver = session_logged_in_driver
+    
+    # def setup_method(self):
+    #     """每个测试方法执行前的设置"""
+    #     logger.info("开始聊天功能测试")
+
+    # def teardown_method(self):
+    #     """每个测试方法执行后的清理"""
+    #     logger.info("聊天功能测试完成")
 
     @allure.story("AI 聊天")
     @allure.description("验证用户能否成功发送消息")

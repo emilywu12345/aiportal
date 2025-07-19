@@ -37,24 +37,11 @@ class KnowledgePage(BasePage):
             # 先等待loading遮罩消失
             self.wait_loading_disappear(timeout=15)
             self.wait_and_click(self.KNOWLEDGE)
-            if not self.wait_for_element(self.KNOWLEDGE_TITLE, timeout=self.timeout):
-                logger.error('知识库页面标题未出现，导航失败')
-                self.take_screenshot('navigation_failed')
-                return False
-            logger.info('成功导航到知识库页面')
+            self.wait_for_element(self.KNOWLEDGE_TITLE, timeout=self.timeout)
             return True
-        except NoSuchElementException as e:
-            logger.error(f'导航失败: 元素未找到 - {str(e)}')
-            self.take_screenshot("进入导航页面失败")
-            return False
-        except TimeoutException as e:
-            logger.error(f'导航失败: 等待元素超时 - {str(e)}')
-            self.take_screenshot("进入导航页面失败")
-            return False
         except Exception as e:
-            logger.error(f"导航失败: 发生未知异常 - {str(e)}")
-            self.take_screenshot("进入导航页面失败")
-            return False
+            logger.error(f"创建知识库失败: {e}")
+            return self.handle_exception(e, "创建知识库")
 
 
     @allure.step("创建新的知识库")
@@ -102,16 +89,7 @@ class KnowledgePage(BasePage):
             time.sleep(1)
             self.take_screenshot("创建知识库成功")
             return True
-        except NoSuchElementException as e:
-            logger.error(f'创建知识库失败: 元素未找到 - {str(e)}')
-            self.take_screenshot("create_kb_failed")
-            return False
-        except TimeoutException as e:
-            logger.error(f'创建知识库失败: 等待元素超时 - {str(e)}')
-            self.take_screenshot("create_kb_failed")
-            return False
         except Exception as e:
-            logger.error(f"创建知识库失败: 发生未知异常 - {str(e)}")
-            self.take_screenshot("create_kb_failed")
-            return False
+            logger.error(f"创建知识库失败: {e}")
+            return self.handle_exception(e, "创建知识库")
 
